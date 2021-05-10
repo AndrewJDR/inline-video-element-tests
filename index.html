@@ -4,12 +4,15 @@
 <head>
     <style>
     #inlineNotAllowedCssMessage {
-        display: none;
+        display: block;
     }
     @media (-webkit-video-playable-inline) {
         #inlineNotAllowedCssMessage {
-            display: block;
+            display: none;
         }
+    }
+    #fullscreenwarning {
+        display: none;
     }
     </style>
     <script>
@@ -62,6 +65,11 @@
         if (playerror)
         {
             playerror.innerHTML = 'Unexpected Result:<br />The video entered fullscreen playback even though &lt;video playsinline&gt; was specified!';
+            const fullscreenWarning = document.getElementById("fullscreenwarning");
+            if (fullscreenWarning)
+            {
+                fullscreenWarning.style.display = "block";
+            }
         }
 
         const vidEle = document.getElementById("videoElement");
@@ -143,10 +151,11 @@
         <p>Sorry, there's a problem playing this video. Please try using a different browser.</p>
     </video>
 
-    <div id="inlineNotAllowedCssMessage">
-        Note: The -webkit-video-playable-inline CSS @media attribute is defined.<br />
-        This means your webkit-based (i.e. iOS) browser is reporting that it will not allow fullscreen playback.<br />
-        Please play the video above and confirm that it goes into fullscreen mode.<br />
+    <div id="fullscreenwarning">
+        <div id="inlineNotAllowedCssMessage">
+            Note: The -webkit-video-playable-inline CSS @media attribute is not defined.<br />
+            If you're using a webkit browser (i.e. iOS) this attribute means that the browser has been configured not to allow fullscreen playback.<br />
+        </div>
     </div>
 
     <br />
