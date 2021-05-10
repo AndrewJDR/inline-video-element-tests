@@ -94,7 +94,14 @@
             playwarn.innerHTML = '';
         }
 
-        const prom = document.getElementById("videoElement").play();
+        const vidEle = document.getElementById("videoElement");
+
+        if (video.webkitSetPresentationMode)
+        {
+            video.webkitSetPresentationMode("inline");
+        }
+
+        const prom = vidEle.play();
         if (prom)
         {
             await prom;
