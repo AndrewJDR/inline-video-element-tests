@@ -164,11 +164,14 @@
         <div id="playerror" style="font-size: 18px; color: red;"></div>
         <div id="sessionid" style="font-weight:bold; font-size: 18px; color: orange;"></div>
 
+    </center>
+
+    <aside>
         <div id="fullscreenwarning">
             <div id="inlineNotAllowedCssMessage">
-                <b style="color:red">Note</b><br />
+                <b style="color:red">Note:</b><br />
                 You're using iOS, and the -webkit-video-playable-inline CSS @media attribute is not defined.<br />
-                This usually means that you're using an app that has an embedded browser, and that embedded browser has been configured to disallow fullscreen playback under some circumstances by that application's developer.<br />
+                This usually means that you're using an iOS app that has an embedded browser, and that embedded browser has been configured to disallow fullscreen playback under some circumstances by that application's developer.<br />
                 This is known to sometimes happen in the LinkedIn app's browser on iOS for currently unknown reasons (other times, it works fine).<br />
                 For more information about how fullscreen playback can be allowed and disallowed within an iOS application, please see:<br />
                 <a href="https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/1614793-allowsinlinemediaplayback">https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/1614793-allowsinlinemediaplayback</a><br />
@@ -176,9 +179,7 @@
                 <a href="https://webkit.org/blog/6784/new-video-policies-for-ios/">https://webkit.org/blog/6784/new-video-policies-for-ios/</a>
             </div>
         </div>
-    </center>
 
-    <aside>
         <p>This is a test of inline playback functionality for the HTML5 video element (i.e. &lt;video playsinline /&gt;).<br />
         When you tap/click on the video frame above, it should play inline. It should NOT expand to a fullscreen player.</p>
     </aside>
