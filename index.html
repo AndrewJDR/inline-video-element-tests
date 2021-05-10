@@ -3,13 +3,16 @@
 <html lang="en">
 <head>
     <script>
+    const sessionId = Math.floor(Math.random() * 100000);
+
     var _rollbarConfig = {
         accessToken: "442a17ddb7674e7797807f42018ce88e",
         rollbarJsUrl: "rollbar.min.js",
         captureUncaught: true,
         captureUnhandledRejections: true,
         payload: {
-            environment: "production"
+            environment: "production",
+            sessionId: sessionId,
         }
     };
     // Rollbar Snippet
@@ -23,38 +26,34 @@
             errinfoEle.innerHTML += `${msg}<br />`;
         }
 
-        Rollbar.info("page loaded");
+        Rollbar.info(`page loaded, session: ${sessionId}`);
         window.addEventListener('load', () => {
-            logToPage("page loaded")
+            logToPage(`page loaded, session ${sessionId}`)
         });
     </script>
 
     <script>
 
-    const fullscreenChange = (ev) => {
-        const  vidEle = document.getElementById("videoElement");
-
-        if(document.fullScreenElement || document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement || document.webkitFullscreenElement)
-        {
-            console.error("Window entered fullscreen mode (unexpected result)", ev);
-            Rollbar.error("Window entered fullscreen mode (unexpected result)", {ev});
-            logToPage("Entered fullscreen (unexpected!)");
-        }
-        else
-        {
-            Rollbar.info("exited fullscreen", {ev});
-            logToPage("Exited fullscreen");
-        }
-
+    const fullscreenEntered = (ev) => {
+        console.error("Window entered fullscreen mode (unexpected result)", ev);
+        Rollbar.error("Window entered fullscreen mode (unexpected result)", {ev});
+        logToPage("Entered fullscreen (unexpected!)");
     }
 
-    document.addEventListener("fullscreenchange", fullscreenChange);
-    //document.addEventListener("webkitfullscreenchange", fullscreenChange);
+    const fullscreenExited = (ev) => {
+        Rollbar.info("exited fullscreen", {ev});
+        logToPage("Exited fullscreen");
+    }
+
+    //document.addEventListener("fullscreenchange", fullscreenChange);
 
     window.addEventListener('load', () => {
         const vidEle = document.getElementById("videoElement");
-        vidEle.addEventListener("webkitbeginfullscreen", fullscreenChange);
-        vidEle.addEventListener("webkitendfullscreen", fullscreenChange);
+        vidEle.addEventListener("webkitbeginfullscreen", fullscreenEntered);
+        vidEle.addEventListener("webkitendfullscreen", fullscreenExited);
+
+        vidEle.addEventListener("beginfullscreen", fullscreenEntered);
+        vidEle.addEventListener("endfullscreen", fullscreenExited);
     });
 
     async function playVid()
