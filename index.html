@@ -18,13 +18,38 @@
     </script>
 
     <script>
+        const logToPage = msg => {
+            const errinfoEle = document.getElementById("errorinfo");
+            errinfoEle.innerHTML += `${msg}<br />`;
+        }
+
         Rollbar.info("page loaded");
+        setTimeout(()=>logToPage("page loaded"),0);
     </script>
 
     <script>
+
+    const fullscreenChange = (ev) => {
+        if (document.fullscreenElement || document.webkitIsFullScreen)
+        {
+            console.error("Window entered fullscreen mode (unexpected result)", ev);
+            Rollbar.error("Window entered fullscreen mode (unexpected result)", {ev});
+            logToPage("Entered fullscreen (unexpected!)");
+        }
+        else
+        {
+            Rollbar.info("Window exited fullscreen mode", {ev});
+            logToPage("Exited fullscreen!");
+        }
+
+    }
+    document.addEventListener("fullscreenchange", fullscreenChange);
+    document.addEventListener("webkitfullscreenchange", fullscreenChange);
+
     async function playVid()
     {
         Rollbar.info("playback requested by user...");
+        logToPage("Playback requested by user...!");
 
         const prom = document.getElementById("videoElement").play();
         if (prom)
@@ -33,6 +58,7 @@
         }
 
         Rollbar.info("played video (no error thrown)");
+        logToPage("played video (no error thrown)");
     }
 
     /*
@@ -92,14 +118,11 @@
         <a href="https://youtu.be/c1TSXKi-YY4">https://youtu.be/c1TSXKi-YY4</a> (Facebook Messenger App, iOS 14.5, iPhone XS Max)<br />
         </p>
 
-        <!--
         <p>
-            Error info from play() call:
+            Logging:
             <div id="errorinfo" style="border: 1px solid white; min-height: 30px">
-
             </div>
         </p>
-        -->
 
         <!--
         <p>Video: <a href="http://vimeo.com/25945509">The Village</a> by Pedro Sousa</p>
