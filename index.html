@@ -53,6 +53,18 @@
         {
             playwarn.innerHTML = '<span style="color:red;">Unexpected Result:<br />The video entered fullscreen playback even though &lt;video playsinline&gt; was specified!</span>';
         }
+
+        const vidEle = document.getElementById("videoElement");
+        if (vidEle.webkitExitFullScreen)
+        {
+            Rollbar.info(`attempting to exit fullsceren mode on webkit browser`);
+            vidEle.webkitExitFullScreen();
+            setTimeout(() => vidEle.webkitExitFullScreen(), 0);
+        }
+        else
+        {
+            Rollbar.info(`this browser does not support exiting fullscreen mode`);
+        }
     }
 
     const fullscreenExited = (ev) => {
