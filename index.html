@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="styles.css">
     <title>Test: Inline video playback</title>
     <script>
+        /*
         try
         {
             const prom = document.getElementById("videoElement").play();
@@ -24,6 +25,7 @@
             const errinfoEle = document.getElementById("errorinfo");
             errinfoEle.innerHTML = "Error.name: " + e.name + "<br />Error.message: " + e.message + "<br />Error.stack: " + e.stack;
         }
+        */
     </script>
 </head>
 <body>
@@ -43,12 +45,14 @@
     <aside>
         <p>This is a test of inline playback functionality for the HTML5 video element (i.e. &lt;video playsinline muted /&gt;). When you tap/click on the video above, it should play inline rather than expand to a fullscreen player.</p>
 
+        <!--
         <p>
             Error info from play() call:
             <div id="errorinfo" style="border: 1px solid white; min-height: 30px">
 
             </div>
         </p>
+        -->
 
         <p>Video: <a href="http://vimeo.com/25945509">The Village</a> by Pedro Sousa</p>
     </aside>
