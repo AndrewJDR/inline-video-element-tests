@@ -71,6 +71,12 @@
         Rollbar.info("playback requested by user...");
         logToPage("playback requested by user...");
 
+        const playwarn = document.getElementById("playwarning")
+        if (playwarn)
+        {
+            playwarn.innerHTML = '';
+        }
+
         const prom = document.getElementById("videoElement").play();
         if (prom)
         {
@@ -80,23 +86,6 @@
         Rollbar.info("played video (no error thrown)");
         logToPage("played video (no error thrown)");
     }
-
-    /*
-    try
-    {
-        const prom = document.getElementById("videoElement").play();
-
-        if (prom)
-        {
-            await prom;
-        }
-    }
-    catch (e)
-    {
-        const errinfoEle = document.getElementById("errorinfo");
-        errinfoEle.innerHTML = "Error.name: " + e.name + "<br />Error.message: " + e.message + "<br />Error.stack: " + e.stack;
-    }
-    */
     </script>
 
     <meta charset="utf-8">
@@ -121,7 +110,11 @@
     <br />
     <br />
     <br />
-    <div id="sessionid" style="font-size: 18px; color: orange;">Please tap the frame above to play video</div>
+
+    <center>
+        <div id="playwarning" style="font-size: 18px; color: green;">Please tap the frame above to play the video</div>
+        <div id="sessionid" style="font-weight:bold; font-size: 18px; color: orange;"></div>
+    </center>
 
     <aside>
         <p>This is a test of inline playback functionality for the HTML5 video element (i.e. &lt;video playsinline /&gt;).<br />
