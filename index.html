@@ -48,10 +48,10 @@
         console.error("Window entered fullscreen mode (unexpected result)", ev);
         Rollbar.error("Window entered fullscreen mode (unexpected result)", {ev});
         logToPage("<span style='color:red'>Entered fullscreen (unexpected!)</span>");
-        const playwarn = document.getElementById("playwarning")
-        if (playwarn)
+        const playerror = document.getElementById("playerror")
+        if (playerror)
         {
-            playwarn.innerHTML = '<span style="color:red;">Unexpected Result:<br />The video entered fullscreen playback even though &lt;video playsinline&gt; was specified!</span>';
+            playerror.innerHTML = 'Unexpected Result:<br />The video entered fullscreen playback even though &lt;video playsinline&gt; was specified!';
         }
 
         const vidEle = document.getElementById("videoElement");
@@ -130,6 +130,7 @@
 
     <center>
         <div id="playwarning" style="font-size: 18px; color: green;">Please tap the frame above to play the video</div>
+        <div id="playerror" style="font-size: 18px; color: red;"></div>
         <div id="sessionid" style="font-weight:bold; font-size: 18px; color: orange;"></div>
     </center>
 
