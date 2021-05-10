@@ -24,13 +24,15 @@
         }
 
         Rollbar.info("page loaded");
-        setTimeout(()=>logToPage("page loaded"),0);
+        window.addEventListener('load', () => logToPage("page loaded"));
     </script>
 
     <script>
 
     const fullscreenChange = (ev) => {
-        if (document.fullscreenElement || document.webkitIsFullScreen)
+        const  vidEle = document.getElementById("videoElement").play();
+
+        if (document.fullscreenElement || document.webkitIsFullScreen || vidEle.fullscreenElement || vidEle.webkitIsFullScreen)
         {
             console.error("Window entered fullscreen mode (unexpected result)", ev);
             Rollbar.error("Window entered fullscreen mode (unexpected result)", {ev});
@@ -43,8 +45,15 @@
         }
 
     }
+
     document.addEventListener("fullscreenchange", fullscreenChange);
     document.addEventListener("webkitfullscreenchange", fullscreenChange);
+
+    window.addEventListener('load', () => {
+        const vidEle = document.getElementById("videoElement");
+        vidEle.addEventListener("fullscreenchange", fullscreenChange);
+        vidEle.addEventListener("webkitfullscreenchange", fullscreenChange);
+    });
 
     async function playVid()
     {
