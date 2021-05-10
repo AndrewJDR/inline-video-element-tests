@@ -47,7 +47,12 @@
     const fullscreenEntered = (ev) => {
         console.error("Window entered fullscreen mode (unexpected result)", ev);
         Rollbar.error("Window entered fullscreen mode (unexpected result)", {ev});
-        logToPage("Entered fullscreen (unexpected!)");
+        logToPage("<span style='color:red'>Entered fullscreen (unexpected!)</span>");
+        const playwarn = document.getElementById("playwarning")
+        if (playwarn)
+        {
+            playwarn.innerHTML = '<span style="color:red;">Unexpected Result:<br />The video entered fullscreen playback even though &lt;video playsinline&gt; was specified!</span>';
+        }
     }
 
     const fullscreenExited = (ev) => {
