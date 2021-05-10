@@ -18,15 +18,21 @@
     </script>
 
     <script>
+        Rollbar.info("page loaded");
+    </script>
+
+    <script>
     async function playVid()
     {
+        Rollbar.info("playback requested by user...");
+
         const prom = document.getElementById("videoElement").play();
         if (prom)
         {
             await prom;
         }
 
-        Rollbar.info("played video");
+        Rollbar.info("played video (no error thrown)");
     }
 
     /*
