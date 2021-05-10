@@ -14,7 +14,7 @@
         }
     }
     #fullscreenwarning {
-        display: none;
+        display: block;
     }
     </style>
     <script>
@@ -111,11 +111,11 @@
         Rollbar.info("playback requested by user...");
         logToPage("playback requested by user...");
 
-        const fullscreenWarning = document.getElementById("fullscreenwarning");
-        if (fullscreenWarning)
-        {
-            fullscreenWarning.style.display = "block";
-        }
+        //const fullscreenWarning = document.getElementById("fullscreenwarning");
+        //if (fullscreenWarning)
+        //{
+        //    fullscreenWarning.style.display = "block";
+        //}
 
         const playwarn = document.getElementById("playwarning")
         if (playwarn)
