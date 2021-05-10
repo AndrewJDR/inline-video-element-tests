@@ -24,15 +24,17 @@
         }
 
         Rollbar.info("page loaded");
-        window.addEventListener('load', () => logToPage("page loaded"));
+        window.addEventListener('load', () => {
+            logToPage("page loaded")
+        });
     </script>
 
     <script>
 
     const fullscreenChange = (ev) => {
-        const  vidEle = document.getElementById("videoElement").play();
+        const  vidEle = document.getElementById("videoElement");
 
-        if(document.fullScreenElement || document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement)
+        if(document.fullScreenElement || document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement || document.webkitFullscreenElement)
         {
             console.error("Window entered fullscreen mode (unexpected result)", ev);
             Rollbar.error("Window entered fullscreen mode (unexpected result)", {ev});
@@ -99,16 +101,13 @@
 <body>
     <h1>Test: Inline HTML5 video playback</h1>
 
-
-    <main>
-        <video id="videoElement" playsinline muted onclick="playVid()">
-            <source src="https://s3-ap-northeast-1.amazonaws.com/daniemon/demos/The%2BVillage-Mobile.mp4" type="video/mp4" media="all and (max-width:680px)"> 
-            <source src="https://s3-ap-northeast-1.amazonaws.com/daniemon/demos/The%2BVillage-Mobile.webm" type="video/webm" media="all and (max-width:680px)"> 
-            <source src="https://s3-ap-northeast-1.amazonaws.com/daniemon/demos/The%2BVillage-SD.mp4" type="video/mp4">
-            <source src="https://s3-ap-northeast-1.amazonaws.com/daniemon/demos/The%2BVillage-SD.webm" type="video/webm">
-            <p>Sorry, there's a problem playing this video. Please try using a different browser.</p>
-        </video>
-    </main>
+    <video id="videoElement" playsinline muted onclick="playVid()">
+        <source src="https://s3-ap-northeast-1.amazonaws.com/daniemon/demos/The%2BVillage-Mobile.mp4" type="video/mp4" media="all and (max-width:680px)"> 
+        <source src="https://s3-ap-northeast-1.amazonaws.com/daniemon/demos/The%2BVillage-Mobile.webm" type="video/webm" media="all and (max-width:680px)"> 
+        <source src="https://s3-ap-northeast-1.amazonaws.com/daniemon/demos/The%2BVillage-SD.mp4" type="video/mp4">
+        <source src="https://s3-ap-northeast-1.amazonaws.com/daniemon/demos/The%2BVillage-SD.webm" type="video/webm">
+        <p>Sorry, there's a problem playing this video. Please try using a different browser.</p>
+    </video>
 
     <aside>
         <p>This is a test of inline playback functionality for the HTML5 video element (i.e. &lt;video playsinline /&gt;).<br />
