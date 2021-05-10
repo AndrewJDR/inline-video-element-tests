@@ -38,8 +38,8 @@
         }
         else
         {
-            Rollbar.info("Window exited fullscreen mode", {ev});
-            logToPage("Exited fullscreen!");
+            Rollbar.info("exited fullscreen", {ev});
+            logToPage("Exited fullscreen");
         }
 
     }
@@ -49,7 +49,7 @@
     async function playVid()
     {
         Rollbar.info("playback requested by user...");
-        logToPage("Playback requested by user...!");
+        logToPage("playback requested by user...");
 
         const prom = document.getElementById("videoElement").play();
         if (prom)
