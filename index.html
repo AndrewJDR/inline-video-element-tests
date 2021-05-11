@@ -57,8 +57,19 @@
         }
 
         Rollbar.info(`page loaded, session: ${sessionId}`);
+
         window.addEventListener('load', () => {
             logToPage(`page loaded, session ${sessionId}`)
+
+            const isWebkit = CSS.supports("(-webkit-overflow-scrolling: touch)");
+            let logExtraInfo = '';
+            if (isWebkit)
+            {
+                const webkitInlinePlayback = window.matchMedia('(-webkit-video-playable-inline)') || {};
+                const debugOutput = `webkit browser detected. inline playback supported? ${webkitInlinePlayback}/${webkitInlinePlayback.matches}`;
+                logToPage(debugOutput);
+                Rollbar.info(debugOutput);
+            }
 
             const sessionIdEle = document.getElementById("sessionid");
             if (sessionIdEle)
