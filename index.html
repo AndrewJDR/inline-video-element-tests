@@ -70,6 +70,12 @@
                 logToPage(debugOutput);
                 Rollbar.info(debugOutput);
             }
+            else
+            {
+                const debugOutput = `webkit browser NOT detected.`;
+                logToPage(debugOutput);
+                Rollbar.info(debugOutput);
+            }
 
             const sessionIdEle = document.getElementById("sessionid");
             if (sessionIdEle)
