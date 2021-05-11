@@ -63,9 +63,9 @@
 
             const isWebkit = CSS.supports("-webkit-overflow-scrolling");
             let logExtraInfo = '';
-            if (isWebkit)
+            if (true)
             {
-                const webkitInlinePlayback = window.matchMedia('-webkit-video-playable-inline') || {};
+                const webkitInlinePlayback = window.matchMedia('(-webkit-video-playable-inline)') || {};
                 const debugOutput = `webkit browser detected. inline playback supported? ${webkitInlinePlayback}/${webkitInlinePlayback.matches}`;
                 logToPage(debugOutput);
                 Rollbar.info(debugOutput);
